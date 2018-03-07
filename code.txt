@@ -1,0 +1,37 @@
+int quangtro = A5; //Thi?t ð?t chân analog ð?c quang tr?
+int bientro = A4; // Thi?t ð?t chân analog ð?c bi?n tr?
+int led = 2;// Thi?t ð?t chân digital là ðèn led
+void setup() {
+  // Kh?i t?o c?ng Serial 9600
+  Serial.begin(9600);
+  //pinMode
+  pinMode(led,OUTPUT);
+}
+
+void loop() {
+  int giatriQuangtro = analogRead(quangtro);// ð?c giá tr? quang tr?
+  int giatriBientro = analogRead(bientro);// ð?c giá tr? bi?n tr?
+  
+  // N?u giá tr? quang tr? <= giá tr? bi?n tr? th? b?t ðèn
+  if (giatriQuangtro <= giatriBientro) {
+    digitalWrite(led,HIGH);
+  } else {
+    digitalWrite(led,LOW);
+  }
+  // Xu?t giá tr? ra Serial Monitor
+  Serial.print("Quang tro ");
+  Serial.print(giatriQuangtro);
+  Serial.print(", bien tro ");
+  Serial.print(giatriBientro);
+  Serial.print(" => ");
+  // D?ng nay týõng ðýõng ðo?n code sau
+  /*
+    if (giatriQuangtro <= giatriBientro) {
+      Serial.println("Sang");
+    } else {
+      Serial.println("Tat");
+    }
+  */
+  Serial.println((giatriQuangtro <= giatriBientro) ? "Sang" : "Tat"); 
+  
+} 
