@@ -1,0 +1,33 @@
+int ledPin = 13;
+int inputPin = 2;
+int val = 0;
+int status = LOW;
+
+void setup()
+{
+  	pinMode(ledPin, OUTPUT);
+	pinMode(inputPin, INPUT);
+	Serial.begin(9600);
+
+}
+
+void loop()
+{
+  val = digitalRead(inputPin);
+  if (val == HIGH) 
+  {
+    if (status == LOW) {
+      digitalWrite(ledPin,HIGH);
+      Serial.println("Motion detected!");
+      delay(1000);
+      status = HIGH;
+    }
+  }
+  else {
+  	if (status == HIGH)
+    {
+      status = LOW;
+      Serial.println("Motion ended!");
+    }
+  }
+}
